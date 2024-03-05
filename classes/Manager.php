@@ -13,7 +13,7 @@ class Manager {
     public function getAllDestination()
     {
         $prepareRequest = $this->connexion->prepare(
-            "SELECT * FROM destination"
+            "SELECT * FROM destination ORDER BY price DESC"
         );
         $prepareRequest->execute([]);
         $line = $prepareRequest->fetchAll(PDO::FETCH_ASSOC);

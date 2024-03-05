@@ -22,6 +22,6 @@ require __DIR__ . '/../config/autoload.php';
 <!-- NAVBAR -->
 <div class="same-line bg-cream">
     <a href="index.php"> <img src="../assets/images/mini_logo.png" style="height: 80px;"> </a>
-      <h1 class="quicksand text-center" style="letter-spacing: 9.856px; font-size: 50px; font-weight: lighter;"> Time Travel </h1>
+      <h1 class="quicksand text-center" style="letter-spacing: 10px; font-size: 30px; font-weight: lighter;"> Time Travel </h1>
 </div>
 

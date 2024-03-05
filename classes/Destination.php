@@ -52,12 +52,6 @@ class Destination {
         return $this->tourOperatorId;
     }
 
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
     public function setId($id)
     {
         $this->id = $id;
@@ -65,23 +59,13 @@ class Destination {
         return $this;
     }
 
-    /**
-     * Set the value of location
-     *
-     * @return  self
-     */ 
     public function setLocation($location)
     {
         $this->location = $location;
 
         return $this;
     }
-
-    /**
-     * Set the value of country
-     *
-     * @return  self
-     */ 
+ 
     public function setCountry($country)
     {
         $this->country = $country;
@@ -89,11 +73,6 @@ class Destination {
         return $this;
     }
 
-    /**
-     * Set the value of price
-     *
-     * @return  self
-     */ 
     public function setPrice($price)
     {
         $this->price = $price;
@@ -101,11 +80,6 @@ class Destination {
         return $this;
     }
 
-    /**
-     * Set the value of tourOperatorId
-     *
-     * @return  self
-     */ 
     public function setTourOperatorId($tourOperatorId)
     {
         $this->tourOperatorId = $tourOperatorId;
