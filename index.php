@@ -7,10 +7,10 @@ $destinations = $manager->getAllDestination();
  ?>
 
 
-<!-- FORMULAIRE WHERE DO YOU WANT TO GO -->
+<!-- FORMULAIRE OÙ SOUHAITEZ-VOUS ALLER -->
 <div class="p-3 container">
-    <h3 class="text-center"> Where do you want to go ? </h3>
-    <p class="text-center"> recherche ?</p>
+    <h3 class="text-center"> Où souhaitez-vous aller ? </h3>
+    <p class="text-center"> recherche ? </p>
 </div>
 
 <!-- CARROUSEL -->
@@ -23,10 +23,9 @@ $destinations = $manager->getAllDestination();
     <?php foreach ($destinations as $destination) { ?> </h4>
         <form action="./details.php" method="get">
             <h4 class="grey-dark me-2 ms-2"> <?= $destination->getLocation()?>
-            <input type="hidden" name="id" value="<?= $destination->getId()?>"> 
+            <input type="hidden" name="location" value="<?= $destination->getLocation()?>"> 
             <button class="btn float-end"type="submit"><i class="fa-solid fa-caret-right" style="color: #dc661f;"></i></button> 
         </form>
-    
      <hr>     
 <?php } ?>
 </div>

@@ -55,35 +55,30 @@ class Destination {
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
 
     public function setLocation($location)
     {
         $this->location = $location;
-
         return $this;
     }
  
     public function setCountry($country)
     {
         $this->country = $country;
-
         return $this;
     }
 
     public function setPrice($price)
     {
         $this->price = $price;
-
         return $this;
     }
 
     public function setTourOperatorId($tourOperatorId)
     {
         $this->tourOperatorId = $tourOperatorId;
-
         return $this;
     }
 }
