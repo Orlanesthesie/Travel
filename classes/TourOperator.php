@@ -8,6 +8,7 @@ class TourOperator {
     private int $gradeTotal;
     private int $grade;
     private bool $isPremium;
+    private string $logo;
 
     // CONSTRUCT
     public function __construct(array $data)
@@ -54,5 +55,60 @@ class TourOperator {
 
     public function getPremium(){
         return $this->isPremium;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
+
+    public function setGradeCount($gradeCount)
+    {
+        $this->gradeCount = $gradeCount;
+        return $this;
+    }
+
+    public function setGradeTotal($gradeTotal)
+    {
+        $this->gradeTotal = $gradeTotal;
+        return $this;
+    }
+
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
+        return $this;
+    }
+
+    public function setIsPremium($isPremium)
+    {
+        $this->isPremium = $isPremium;
+        return $this;
+    }
+
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+        return $this;
     }
 }   
