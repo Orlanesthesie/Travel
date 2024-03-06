@@ -3,14 +3,15 @@ session_start();
 include "./partials/header.php";
 
 $manager = new Manager($connexion);
+
 $destinations = $manager->getAllDestination();
- ?>
+
+?>
 
 
 <!-- FORMULAIRE OÙ SOUHAITEZ-VOUS ALLER -->
 <div class="p-3 container">
     <h3 class="text-center"> Où souhaitez-vous aller ? </h3>
-    <p class="text-center"> recherche ? </p>
 </div>
 
 <!-- CARROUSEL -->
@@ -38,7 +39,7 @@ $destinations = $manager->getAllDestination();
       $destinations = array(
         array(
           "ville" => "Paris",
-          "image" => "./assets/images/france/paris/paris1.jpg",
+          "image" => "./assets/images/France/Paris/paris1.jpg",
           "description" => "Flânez dans les rues pavées, savourez un croissant au café et vivez la vie parisienne.",
         ),
         array(
@@ -91,6 +92,7 @@ function creerCarteDestination($destination) {
   return $carte;
 }
 ?>
+
 
 <?php
 include "./partials/footer.php"

@@ -10,6 +10,24 @@ class Manager {
     }
 
     // METHOD
+
+    public function getAllCountry()
+    {
+        $preparedRequest = $this->connexion->prepare(
+            "SELECT country FROM destination"
+        );
+        $preparedRequest->execute([]);
+        $line = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        $countryArray = [];
+
+        foreach ($line as $key) {
+            $country = new Destination($key);
+            array_push($countryArray, $country);
+        }
+        return $country;
+        
+    }
+
     public function getAllDestination()
     {
         $prepareRequest = $this->connexion->prepare(
@@ -39,24 +57,34 @@ class Manager {
         return $destination;
     }
 
-    public function getOperatorByDestination($destination)
+    public function getDestinationsByLocation(string $location)
+    {
+        $preparedRequest = $this->connexion->prepare(
+            "SELECT d.tourOperatorId, d.country, d.location, d.price , t.* FROM destination d LEFT JOIN tour_operator t ON d.tourOperatorId = t.id WHERE location = ? "
+        );
+        $preparedRequest->execute([
+            $location
+        ]);
+        $data = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+
+        $destinationsArray = [];
+        foreach ($data as $key) {
+            $destinationPrix = new Destination($key);
+            array_push($destinationsArray, $destinationPrix);
+        } 
+        return $destinationsArray;
+    }
+
+    public function getOperatorByDestination(string $location)
     {
     
         $preparedRequest = $this->connexion->prepare(
-            "SELECT * FROM tour_operator JOIN destination ON tour_operator.id = destination.tour_operator_id WHERE destination.location = ?"
+            "SELECT * FROM tour_operator JOIN destination ON tour_operator.id = destination.tourOperatorId WHERE destination.location = ?"
         );
         $preparedRequest->execute([
-            $destination->getLocation()
+            $location,
         ]);
-        $tourOperatorDataFromDB = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
-        $TOArray = [];
-
-        foreach ($tourOperatorDataFromDB as $tourOperatorDataForMyObject ) {
-            $tour_operator = new TourOperator($tourOperatorDataForMyObject);
-            array_push($TOArray, $tour_operator);
-        }
-        return $TOArray;
-  
+        return $preparedRequest->fetchAll(PDO::FETCH_ASSOC); 
     }
 
     public function createReview()
@@ -88,4 +116,5 @@ class Manager {
     {
 
     }
+
 }

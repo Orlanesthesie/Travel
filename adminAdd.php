@@ -66,17 +66,18 @@ $destinations = $manager->getAllDestination();
 
 <br> 
 
+<!-- Ajouter un OPERATEUR -->
 <div class="container">
     <h1>Ajouter un opérateur</h1>
-    <form action="/action_page.php">
+    <form action="./process/process_add_operator.php" method="post">
         <label for="fname">Nom</label>
-        <input type="text" id="fname" name="firstname" placeholder="Votre nom et prénom">
+        <input type="text" id="name" name="name" placeholder="Votre nom et prénom">
 
         <label for="emailAddress">Lien du site</label>
-        <input id="emailAddress" type="email" name="email" placeholder="Votre email">
+        <input type="text" id="link" name="link" placeholder="Lien du site">
 
         <label for="sujet" class="mb-2">Logo</label>
-        <input type="file" id="sujet" name="sujet" placeholder="L'objet de votre message" class="pb-3">
+        <input type="file" id="logo" name="logo" class="pb-3">
 
         <button type="submit" class="btn bg-orange">Valider</button>
     </form>

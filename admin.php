@@ -15,7 +15,7 @@ $destinations = $manager->getAllDestination();
     </header>
 
     <div class="d-flex justify-content-center p-4 vh-10 bg-grey-light">
-            <form style="align-items: center;" class="bg-grey-light">
+            <form action="./process/process_mdp.php" method="post" style="align-items: center;" class="bg-grey-light">
                 <p class="grey-dark d-inline">Mot de passe</p>
                 <input type="password" id="motDePasse" name="motDePasse" class="">
                 <button type="submit" class="btn bg-orange ">Valider</button>

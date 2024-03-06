@@ -6,26 +6,24 @@ class TourOperator {
     private string $link;
     private int $gradeCount;
     private int $gradeTotal;
-    private int $grade;
     private bool $isPremium;
     private string $logo;
 
     // CONSTRUCT
     public function __construct(array $data)
     {
-        $this->hydrate($data);
+        $this->hydrate($data);    
     }
 
     public function hydrate(array $data)
     {
         foreach ($data as $key => $value) {
-            $method = 'set'.ucfirst($key);
-
-            if (method_exists($this, $method))
-            {
-                $this -> $method($value);
+            $method = 'set' . str_replace(' ', '', ucwords(str_replace('', ' ', $key)));
+            if (method_exists($this, $method)) {
+                $this->$method($value);
             }
         }
+        return $method;
     }
 
     // METHOD
@@ -47,10 +45,6 @@ class TourOperator {
 
     public function getGradeTotal(){
         return $this->gradeTotal;
-    }
-
-    public function getGrade(){
-        return $this->grade;
     }
 
     public function getPremium(){
@@ -86,12 +80,6 @@ class TourOperator {
     public function setGradeTotal($gradeTotal)
     {
         $this->gradeTotal = $gradeTotal;
-        return $this;
-    }
-
-    public function setGrade($grade)
-    {
-        $this->grade = $grade;
         return $this;
     }
 
