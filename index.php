@@ -38,12 +38,12 @@ $destinations = $manager->getAllDestination();
       $destinations = array(
         array(
           "ville" => "Paris",
-          "image" => "./assets/images/france/paris/Paris1.jpg",
+          "image" => "./assets/images/france/paris/paris1.jpg",
           "description" => "Flânez dans les rues pavées, savourez un croissant au café et vivez la vie parisienne.",
         ),
         array(
           "ville" => "Tunis",
-          "image" => "./assets/images/tunisie/tunis/Tunis1.jpg",
+          "image" => "./assets/images/tunisie/tunis/tunis1.jpg",
           "description" => "Profitez des plages paradisiaques et du soleil de la Tunisie.",
         ),
         array(
@@ -53,17 +53,17 @@ $destinations = $manager->getAllDestination();
         ),
         array(
             "ville" => "Rome",
-            "image" => "./assets/images/italie/rome/Rome1.jpg",
+            "image" => "./assets/images/italie/rome/rome1.jpg",
             "description" => "La ville éternelle où l'histoire et la beauté se rencontrent.",
         ),
         array(
             "ville" => "Londres",
-            "image" => "./assets/images/r-u/londres/Londres1.jpg",
+            "image" => "./assets/images/r-u/londres/londres1.jpg",
             "description" => "Shopping, musées, gastronomie... Découvrez les mille et une facettes de la capitale britannique.",
         ),
         array(
             "ville" => "Malaga",
-            "image" => "./assets/images/espagne/malaga/Malaga1.jpg",
+            "image" => "./assets/images/espagne/malaga/malaga1.jpg",
             "description" => " Découvrez les trésors historiques et les plages de rêve de la perle de l'Andalousie."
         )
       );
