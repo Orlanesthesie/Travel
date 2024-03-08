@@ -8,6 +8,20 @@ $destinations = $manager->getAllDestination();
 
 ?>
 
+<style>
+   /* Style pour chaque formulaire en mode réactif */
+   @media (max-width: 768px) {
+        .container {
+            width: calc(70% - 20px); /* Les formulaires passent en 2 colonnes */
+        }
+    }
+
+    @media (max-width: 880px) {
+        .container {
+            width: 100%; /* Les formulaires passent en une seule colonne */
+        }
+    }
+</style>
 
 <!-- FORMULAIRE OÙ SOUHAITEZ-VOUS ALLER -->
 <div class="p-3 container">
@@ -108,7 +122,7 @@ function creerCarteDestination($destination) {
   $carte .= "    <div class='card-body'>";
   $carte .= "      <h5 class='card-title'>" . $destination['ville'] . "</h5>";
   $carte .= "      <p class='card-text'>" . $destination['description'] . "</p>";
-  $carte .= "      <a href='#' class='btn bg-orange'>Voir les offres</a>";
+  $carte .= "      <a href='./details.php?location=" . strtolower($destination['ville']) . "' class='btn bg-orange'>Voir les offres</a>";
   $carte .= "    </div>";
   $carte .= "  </div>";
   $carte .= "</div>";

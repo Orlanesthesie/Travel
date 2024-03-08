@@ -6,9 +6,6 @@ $manager = new Manager($connexion);
 $destinations = $manager->getAllDestination();
 ?>
 
-
-
-
 <body>
     <header class="text-center bg-white text-dark p-4 mt-3">
         <h1>MODE ADMIN</h1>
