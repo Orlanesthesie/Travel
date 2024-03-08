@@ -31,7 +31,7 @@ class Manager {
     public function getAllDestination()
     {
         $prepareRequest = $this->connexion->prepare(
-            "SELECT * FROM destination ORDER BY price DESC"
+            "SELECT * FROM destination GROUP BY location ORDER BY price DESC "
         );
         $prepareRequest->execute([]);
         $line = $prepareRequest->fetchAll(PDO::FETCH_ASSOC);
@@ -87,34 +87,69 @@ class Manager {
         return $preparedRequest->fetchAll(PDO::FETCH_ASSOC); 
     }
 
-    public function createReview()
+    public function getReviewsByOperatorId($tourOperatorId)
     {
+        $preparedRequest = $this->connexion->prepare(
+            "SELECT * FROM review WHERE tour_operator_id = ?"
+        );
+        $preparedRequest->execute([$tourOperatorId]);
+        $reviews = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        $reviewsArray = [];
 
+        foreach ($reviews as $review) {
+            $reviewObject = new Review($review);
+            array_push($reviewsArray, $reviewObject);
+        }
+        return $reviewsArray;
     }
-
-    // public getReviewByOperatorId()
-    // {
-
-    // }
 
     public function getAllOperator()
     {
+        $prepareRequest = $this->connexion->prepare(
+            "SELECT * FROM tour_operator"
+        );
+        $prepareRequest->execute([]);
+        $line = $prepareRequest->fetchAll(PDO::FETCH_ASSOC);
+        $TOArray = [];
 
+        foreach ($line as $key ) {
+            $TO = new TourOperator($key);
+            array_push($TOArray, $TO);
+        }
+        return $TOArray;
     }
 
-    public function updateOperatorToPremium()
+    public function getAllOperatorPremium()
     {
+        $prepareRequest = $this->connexion->prepare(
+            "SELECT * FROM tour_operator WHERE isPremium = 1"
+        );
+        $prepareRequest->execute([]);
+        $line = $prepareRequest->fetchAll(PDO::FETCH_ASSOC);
+        $TOArray = [];
 
+        foreach ($line as $key ) {
+            $TO = new TourOperator($key);
+            array_push($TOArray, $TO);
+        }
+        return $TOArray;
     }
 
-    public function createTourOperator()
+    public function getAllOperatorRegular()
     {
+        $prepareRequest = $this->connexion->prepare(
+            "SELECT * FROM tour_operator WHERE isPremium = 0"
+        );
+        $prepareRequest->execute([]);
+        $line = $prepareRequest->fetchAll(PDO::FETCH_ASSOC);
+        $TOArray = [];
 
+        foreach ($line as $key ) {
+            $TO = new TourOperator($key);
+            array_push($TOArray, $TO);
+        }
+        return $TOArray;
     }
 
-    public function createDestination()
-    {
-
-    }
 
 }

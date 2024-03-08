@@ -15,7 +15,30 @@ $destinations = $manager->getAllDestination();
 </div>
 
 <!-- CARROUSEL -->
-<p class="text-center"> carousel </p>
+<div id="carouselExampleControls" class="container carousel slide mb-5 " data-bs-ride="carousel">
+  <div class="carousel-inner rounded">
+    <div class="carousel-item active">
+      <img src="./assets/images/carouprice/hammaprice.jpg" class="d-block w-100 " alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/carouprice/malagaprice.jpg" class="d-block w-100 " alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/carouprice/monacoprice.jpg" class="d-block w-100 " alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/carouprice/Parisprice.jpg" class="d-block w-100 " alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
 
 <!-- TOP DESTINATION -->
@@ -23,7 +46,7 @@ $destinations = $manager->getAllDestination();
     <h3 class="grey-dark text-center">TOP DESTINATION</h3>
     <?php foreach ($destinations as $destination) { ?> </h4>
         <form action="./details.php" method="get">
-            <h4 class="grey-dark me-2 ms-2"> <?= $destination->getLocation()?>
+            <h4 class="grey-dark me-2 ms-2"> <?= ucfirst($destination->getLocation())?>
             <input type="hidden" name="location" value="<?= $destination->getLocation()?>"> 
             <button class="btn float-end"type="submit"><i class="fa-solid fa-caret-right" style="color: #dc661f;"></i></button> 
         </form>
@@ -39,7 +62,7 @@ $destinations = $manager->getAllDestination();
       $destinations = array(
         array(
           "ville" => "Paris",
-          "image" => "./assets/images/France/Paris/paris1.jpg",
+          "image" => "./assets/images/france/paris/paris1.jpg",
           "description" => "Flânez dans les rues pavées, savourez un croissant au café et vivez la vie parisienne.",
         ),
         array(
@@ -59,7 +82,7 @@ $destinations = $manager->getAllDestination();
         ),
         array(
             "ville" => "Londres",
-            "image" => "./assets/images/r-u/londres/londres1.jpg",
+            "image" => "./assets/images/royaume-uni/londres/londres1.jpg",
             "description" => "Shopping, musées, gastronomie... Découvrez les mille et une facettes de la capitale britannique.",
         ),
         array(

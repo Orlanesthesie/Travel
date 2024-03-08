@@ -44,3 +44,15 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+
+/* CAROUSEL */
+
+#carouselExampleControls {
+    max-width: 600px; /* Définir la largeur maximale du carousel */
+    margin: auto; /* Centrer le carousel horizontalement */
+  }
+  
+  .carousel-inner .carousel-item img {
+    height: 300px; /* Définir la hauteur des images */
+    object-fit: cover; /* Redimensionner les images pour qu'elles remplissent la zone sans déformer l'aspect */
+  }

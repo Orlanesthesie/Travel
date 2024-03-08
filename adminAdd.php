@@ -4,14 +4,50 @@ include "./partials/header.php";
 
 $manager = new Manager($connexion);
 $destinations = $manager->getAllDestination();
+
+$allTO = $manager->getAllOperator();
+$allTOPremium = $manager->getAllOperatorPremium();
+$allTORegular = $manager->getAllOperatorRegular();
+
 ?>
 
 <header class="text-center bg-white text-dark p-4">
-        <h1>MODE ADMIN</h1>
-    </header>
+    <h1>MODE ADMIN</h1>
+</header>
 
 <style>
-    
+    .form-container {
+        display: flex;
+        flex-wrap: wrap; /* Permet le passage à la ligne lorsque l'espace est insuffisant */
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    /* Style pour chaque formulaire */
+    .container {
+        box-sizing: border-box;
+        border-radius: 5px;
+        background-color: #D9D9D9;
+        padding: 20px;
+        width: calc(33.33% - 20px); /* Calcul de la largeur de chaque formulaire */
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    /* Style pour chaque formulaire en mode réactif */
+    @media (max-width: 768px) {
+        .container {
+            width: calc(70% - 20px); /* Les formulaires passent en 2 colonnes */
+        }
+    }
+
+    @media (max-width: 880px) {
+        .container {
+            width: 100%; /* Les formulaires passent en une seule colonne */
+        }
+    }
+
+    /* Autres styles inchangés */
     input[type=text],
     textarea,
     input[type=email] {
@@ -22,14 +58,10 @@ $destinations = $manager->getAllDestination();
         box-sizing: border-box;
         margin-top: 6px;
         margin-bottom: 16px;
-        margin-right: 0px;
-        margin-left: 0px;
         resize: vertical;
     }
 
     label {
-        margin-right: 0px;
-        margin-left: 0px;
         width: 100%;
     }
 
@@ -46,84 +78,85 @@ $destinations = $manager->getAllDestination();
         background-color: #1872D9;
     }
 
-    .container {
-        /* Ajouter box-sizing */
-        box-sizing: border-box;
-        border-radius: 5px;
-        background-color: #D9D9D9;
-        padding: 20px;
-        width: 100%;
-        /* redéfinition 400 + 2*20 */
-        max-width: 440px;
-        margin: 0 auto;
-    }
-
     h1 {
         color: dark;
         width: 100%;
     }
 </style>
 
-<br> 
-
-<!-- Ajouter un OPERATEUR -->
-<div class="container">
-    <h1>Ajouter un opérateur</h1>
-    <form action="./process/process_add_operator.php" method="post">
-        <label for="fname">Nom</label>
-        <input type="text" id="name" name="name" placeholder="Votre nom et prénom">
-
-        <label for="emailAddress">Lien du site</label>
-        <input type="text" id="link" name="link" placeholder="Lien du site">
-
-        <label for="sujet" class="mb-2">Logo</label>
-        <input type="file" id="logo" name="logo" class="pb-3">
-
-        <button type="submit" class="btn bg-orange">Valider</button>
-    </form>
-</div>
-
-<br>
-
-<div class="container">
-    <h1>Ajouter une destination</h1>
-    <form action="/action_page.php">
-        <label for="fname">Nom</label>
-        <input type="text" id="fname" name="firstname" placeholder="Votre nom et prénom">
-
-        <label for="emailAddress">Lien du site</label>
-        <input id="emailAddress" type="email" name="email" placeholder="Votre email">
-
-        <label for="sujet">Prix</label>
-        <input type="text" id="sujet" name="sujet" placeholder="L'objet de votre message">
-
-        <label class="mb-2">Opérateur</label>
-        <select name="operator" id="pet-select">
-            <option value="dog">Leclerc Voyage</option>
-            <option value="cat">Fram</option>
-            <option value="hamster">Heliades</option>
-            <option value="parrot">Salaun Holidays</option>
-        </select>
-        <br>
-        <button type="submit" class="btn bg-orange mt-4">Valider</button>
-    </form>
-</div>
-
-<br>
-
-<div class="container">
-    <h1>Prenium</h1>
-    <form action="/action_page.php">
-        <label class="mb-2">Tour Opérateur</label>
-        <select name="operator" id="pet-select">
-            <option value="dog">Leclerc Voyage</option>
-            <option value="cat">Fram</option>
-            <option value="hamster">Heliades</option>
-            <option value="parrot">Salaun Holidays</option>
-        </select>
+<div class="form-container ">
 
 
-        <br>
-        <button type="submit" class="btn bg-orange mt-4">Valider</button>
-    </form>
+    <!-- Ajouter un OPERATEUR -->
+    <div class="container mb-2 ">
+        <h1>Ajouter un opérateur</h1>
+        <form action="./process/process_add_operator.php" method="post">
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" placeholder="Nom de du tour operateur">
+
+            <label for="link">Lien du site</label>
+            <input type="text" id="link" name="link" placeholder="Lien du site">
+
+            <button type="submit" class="btn bg-orange">Valider</button>
+        </form>
+    </div>
+
+    <!-- Ajouter une destination -->
+    <div class="container mb-2">
+        <h1>Ajouter une destination</h1>
+        <form action="./process/add_destination.php" method="post">
+            <label for="country">Pays</label>
+            <input type="text" id="country" name="country" placeholder="Pays">
+
+            <label for="location">Ville</label>
+            <input type="text" id="location" name="location" placeholder="Ville">
+
+            <!-- <label for="price">Prix</label>
+        <input type="number" id="price" name="price" placeholder="Prix"> -->
+
+            <input type="number" name="price" id="price">
+
+            <label class="mb-2">Opérateur</label>
+            <select name="tourOperatorId" id="tourOperatorId">
+                <?php foreach ($allTO as $TOObject) { ?>
+                    <option value="<?= $TOObject->getId() ?>"> <?= $TOObject->getName() ?> </option>
+                <?php } ?>
+            </select>
+            <br>
+            <button type="submit" class="btn bg-orange mt-4">Valider</button>
+        </form>
+    </div>
+
+    <!-- Destination en premium -->
+    <div class="container mb-2">
+        <h1>Premium</h1>
+
+        <!-- FAIRE DEVENIR PREMIUM -->
+        <form action="./process/process_premium.php" method="post" class="d-flex justify-content-center align-items-center">
+            <label class="mb-2">Add Premium</label>
+            <select name="tourOperatorId" id="tourOperatorId">
+                <?php
+                foreach ($allTORegular as $TOObject) { ?>
+                    <option value="<?= $TOObject->getId() ?> "> <?= $TOObject->getName() ?> </option>
+                <?php } ?>
+            </select>
+            <br>
+            <button type="submit" class="btn bg-orange mt-4">Valider</button>
+        </form>
+        <hr>
+
+        <!-- ENLEVER LE PREMIUM -->
+        <form action="./process/process_regular.php" method="post" class="d-flex justify-content-center align-items-center">
+            <label class="mb-2">Remove Premium</label>
+            <select name="tourOperatorId" id="tourOperatorId">
+                <?php
+                foreach ($allTOPremium as $TOObject) { ?>
+                    <option value="<?= $TOObject->getId() ?> "> <?= $TOObject->getName() ?> </option>
+                <?php } ?>
+            </select>
+            <br>
+            <button type="submit" class="btn bg-orange mt-4">Valider</button>
+        </form>
+
+    </div>
 </div>
